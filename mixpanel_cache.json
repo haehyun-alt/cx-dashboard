@@ -1,0 +1,292 @@
+{
+  "from_date": "2026-03-01",
+  "to_date": "2026-03-30",
+  "generated": "2026-03-31 07:55",
+  "kpi": {
+    "signup": 34766,
+    "assign": 11411,
+    "assign_rate": 32.8,
+    "trend_pct": -49.4,
+    "ready_pct": 12.1,
+    "ready_daily": 3801
+  },
+  "charts": {
+    "daily_trend": "<div>                            <div id=\"5fbf63c5-523e-495f-9ad3-36730598d1e0\" class=\"plotly-graph-div\" style=\"height:300px; width:100%;\"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById(\"5fbf63c5-523e-495f-9ad3-36730598d1e0\")) {                    Plotly.newPlot(                        \"5fbf63c5-523e-495f-9ad3-36730598d1e0\",                        [{\"line\":{\"color\":\"#636EFA\"},\"mode\":\"lines+markers\",\"name\":\"\\uac00\\uc785\",\"x\":[\"2026-03-01\",\"2026-03-02\",\"2026-03-03\",\"2026-03-04\",\"2026-03-05\",\"2026-03-06\",\"2026-03-07\",\"2026-03-08\",\"2026-03-09\",\"2026-03-10\",\"2026-03-11\",\"2026-03-12\",\"2026-03-13\",\"2026-03-14\",\"2026-03-15\",\"2026-03-16\",\"2026-03-17\",\"2026-03-18\",\"2026-03-19\",\"2026-03-20\",\"2026-03-21\",\"2026-03-22\",\"2026-03-23\",\"2026-03-24\",\"2026-03-25\",\"2026-03-26\",\"2026-03-27\",\"2026-03-28\",\"2026-03-29\",\"2026-03-30\"],\"y\":[1670,1573,1210,1331,1582,1531,1995,2059,1606,1157,1128,1281,1199,1144,1339,1075,1011,1142,998,1008,918,628,673,656,707,683,767,821,935,939],\"type\":\"scatter\"},{\"line\":{\"color\":\"#00CC96\"},\"mode\":\"lines+markers\",\"name\":\"\\ubc30\\uc815\",\"x\":[\"2026-03-01\",\"2026-03-02\",\"2026-03-03\",\"2026-03-04\",\"2026-03-05\",\"2026-03-06\",\"2026-03-07\",\"2026-03-08\",\"2026-03-09\",\"2026-03-10\",\"2026-03-11\",\"2026-03-12\",\"2026-03-13\",\"2026-03-14\",\"2026-03-15\",\"2026-03-16\",\"2026-03-17\",\"2026-03-18\",\"2026-03-19\",\"2026-03-20\",\"2026-03-21\",\"2026-03-22\",\"2026-03-23\",\"2026-03-24\",\"2026-03-25\",\"2026-03-26\",\"2026-03-27\",\"2026-03-28\",\"2026-03-29\",\"2026-03-30\"],\"y\":[380,379,326,414,507,460,460,443,412,418,392,386,308,387,384,439,380,488,328,291,296,274,320,381,588,335,363,276,276,320],\"type\":\"scatter\"}],                        {\"template\":{\"data\":{\"histogram2dcontour\":[{\"type\":\"histogram2dcontour\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"choropleth\":[{\"type\":\"choropleth\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"histogram2d\":[{\"type\":\"histogram2d\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"heatmap\":[{\"type\":\"heatmap\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"contourcarpet\":[{\"type\":\"contourcarpet\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"contour\":[{\"type\":\"contour\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"surface\":[{\"type\":\"surface\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"mesh3d\":[{\"type\":\"mesh3d\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"scatter\":[{\"fillpattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2},\"type\":\"scatter\"}],\"parcoords\":[{\"type\":\"parcoords\",\"line\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterpolargl\":[{\"type\":\"scatterpolargl\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"bar\":[{\"error_x\":{\"color\":\"#2a3f5f\"},\"error_y\":{\"color\":\"#2a3f5f\"},\"marker\":{\"line\":{\"color\":\"#E5ECF6\",\"width\":0.5},\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"bar\"}],\"scattergeo\":[{\"type\":\"scattergeo\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterpolar\":[{\"type\":\"scatterpolar\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"histogram\":[{\"marker\":{\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"histogram\"}],\"scattergl\":[{\"type\":\"scattergl\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatter3d\":[{\"type\":\"scatter3d\",\"line\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}},\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattermap\":[{\"type\":\"scattermap\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattermapbox\":[{\"type\":\"scattermapbox\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterternary\":[{\"type\":\"scatterternary\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattercarpet\":[{\"type\":\"scattercarpet\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"carpet\":[{\"aaxis\":{\"endlinecolor\":\"#2a3f5f\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"minorgridcolor\":\"white\",\"startlinecolor\":\"#2a3f5f\"},\"baxis\":{\"endlinecolor\":\"#2a3f5f\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"minorgridcolor\":\"white\",\"startlinecolor\":\"#2a3f5f\"},\"type\":\"carpet\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#EBF0F8\"},\"line\":{\"color\":\"white\"}},\"header\":{\"fill\":{\"color\":\"#C8D4E3\"},\"line\":{\"color\":\"white\"}},\"type\":\"table\"}],\"barpolar\":[{\"marker\":{\"line\":{\"color\":\"#E5ECF6\",\"width\":0.5},\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"barpolar\"}],\"pie\":[{\"automargin\":true,\"type\":\"pie\"}]},\"layout\":{\"autotypenumbers\":\"strict\",\"colorway\":[\"#636efa\",\"#EF553B\",\"#00cc96\",\"#ab63fa\",\"#FFA15A\",\"#19d3f3\",\"#FF6692\",\"#B6E880\",\"#FF97FF\",\"#FECB52\"],\"font\":{\"color\":\"#2a3f5f\"},\"hovermode\":\"closest\",\"hoverlabel\":{\"align\":\"left\"},\"paper_bgcolor\":\"white\",\"plot_bgcolor\":\"#E5ECF6\",\"polar\":{\"bgcolor\":\"#E5ECF6\",\"angularaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"radialaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"}},\"ternary\":{\"bgcolor\":\"#E5ECF6\",\"aaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"baxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"caxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"}},\"coloraxis\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}},\"colorscale\":{\"sequential\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]],\"sequentialminus\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]],\"diverging\":[[0,\"#8e0152\"],[0.1,\"#c51b7d\"],[0.2,\"#de77ae\"],[0.3,\"#f1b6da\"],[0.4,\"#fde0ef\"],[0.5,\"#f7f7f7\"],[0.6,\"#e6f5d0\"],[0.7,\"#b8e186\"],[0.8,\"#7fbc41\"],[0.9,\"#4d9221\"],[1,\"#276419\"]]},\"xaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\",\"title\":{\"standoff\":15},\"zerolinecolor\":\"white\",\"automargin\":true,\"zerolinewidth\":2},\"yaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\",\"title\":{\"standoff\":15},\"zerolinecolor\":\"white\",\"automargin\":true,\"zerolinewidth\":2},\"scene\":{\"xaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2},\"yaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2},\"zaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2}},\"shapedefaults\":{\"line\":{\"color\":\"#2a3f5f\"}},\"annotationdefaults\":{\"arrowcolor\":\"#2a3f5f\",\"arrowhead\":0,\"arrowwidth\":1},\"geo\":{\"bgcolor\":\"white\",\"landcolor\":\"#E5ECF6\",\"subunitcolor\":\"white\",\"showland\":true,\"showlakes\":true,\"lakecolor\":\"white\"},\"title\":{\"x\":0.05},\"mapbox\":{\"style\":\"light\"}}},\"yaxis\":{\"title\":{\"text\":\"\\uac74\\uc218\"}},\"margin\":{\"t\":16,\"b\":24,\"l\":48,\"r\":16},\"font\":{\"family\":\"Pretendard, -apple-system, Malgun Gothic, sans-serif\",\"size\":12},\"title\":{},\"height\":300,\"paper_bgcolor\":\"#fff\",\"plot_bgcolor\":\"#fafbfc\"},                        {\"displayModeBar\": false, \"responsive\": true}                    )                };            </script>        </div>",
+    "buddy_cross": "<div>                            <div id=\"761a8f14-3597-47e2-be50-4ab675b096b1\" class=\"plotly-graph-div\" style=\"height:400px; width:100%;\"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById(\"761a8f14-3597-47e2-be50-4ab675b096b1\")) {                    Plotly.newPlot(                        \"761a8f14-3597-47e2-be50-4ab675b096b1\",                        [{\"hovertemplate\":\"\\u003cb\\u003e\\ubc31\\uc740\\uc601\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 16.0\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 8,551\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 698\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 535\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 2.39%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[16.0],\"y\":[2.39],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\ubc15\\uc900\\uc218\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 15.5\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 10,442\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 762\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 674\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.53%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[15.5],\"y\":[4.53],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc720\\ubbfc\\uc815\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 11.0\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 5,861\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 682\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 532\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.15%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[11.0],\"y\":[4.15],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc720\\uc9c0\\uc5f0\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 8.0\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 8,635\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 719\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 1,078\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 3.35%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[8.0],\"y\":[3.35],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uac10\\ubbfc\\uc131\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 11.9\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 8,115\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 744\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 680\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 3.62%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[11.9],\"y\":[3.62],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uae40\\ub3d9\\uc6b1\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 17.4\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 11,436\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 831\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 657\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 5.39%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[17.4],\"y\":[5.39],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc774\\ud61c\\uc5f0\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 13.1\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 7,306\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 561\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 558\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 5.43%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[13.1],\"y\":[5.43],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc591\\ud64d\\uc775\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 9.5\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 9,490\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 745\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 999\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.6%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[9.5],\"y\":[4.6],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc548\\uc0c1\\uc740\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 10.8\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 7,860\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 804\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 728\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 2.77%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[10.8],\"y\":[2.77],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc7a5\\ud604\\uc815\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 17.9\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 12,481\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 785\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 697\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.09%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[17.9],\"y\":[4.09],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\ud604\\uc9c0\\uc6c5\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 10.2\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 6,729\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 702\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 659\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 3.44%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[10.2],\"y\":[3.44],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uac15\\ubbf8\\uc560\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 12.3\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 7,730\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 762\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 626\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.57%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[12.3],\"y\":[4.57],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc784\\ucc44\\ubbfc\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 8.7\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 11,831\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 849\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 1,356\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 5.12%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[8.7],\"y\":[5.12],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc815\\uc9c0\\ud6c8\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 7.7\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 9,224\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 773\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 1,194\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.11%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[7.7],\"y\":[4.11],\"type\":\"scatter\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc774\\ud558\\ub298\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0: 18.8\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 11,645\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 750\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 619\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.47%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\",\"line\":{\"color\":\"white\",\"width\":2},\"opacity\":0.85,\"size\":20},\"mode\":\"markers\",\"showlegend\":false,\"x\":[18.8],\"y\":[4.47],\"type\":\"scatter\"}],                        {\"template\":{\"data\":{\"histogram2dcontour\":[{\"type\":\"histogram2dcontour\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"choropleth\":[{\"type\":\"choropleth\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"histogram2d\":[{\"type\":\"histogram2d\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"heatmap\":[{\"type\":\"heatmap\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"contourcarpet\":[{\"type\":\"contourcarpet\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"contour\":[{\"type\":\"contour\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"surface\":[{\"type\":\"surface\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"mesh3d\":[{\"type\":\"mesh3d\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"scatter\":[{\"fillpattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2},\"type\":\"scatter\"}],\"parcoords\":[{\"type\":\"parcoords\",\"line\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterpolargl\":[{\"type\":\"scatterpolargl\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"bar\":[{\"error_x\":{\"color\":\"#2a3f5f\"},\"error_y\":{\"color\":\"#2a3f5f\"},\"marker\":{\"line\":{\"color\":\"#E5ECF6\",\"width\":0.5},\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"bar\"}],\"scattergeo\":[{\"type\":\"scattergeo\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterpolar\":[{\"type\":\"scatterpolar\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"histogram\":[{\"marker\":{\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"histogram\"}],\"scattergl\":[{\"type\":\"scattergl\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatter3d\":[{\"type\":\"scatter3d\",\"line\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}},\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattermap\":[{\"type\":\"scattermap\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattermapbox\":[{\"type\":\"scattermapbox\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterternary\":[{\"type\":\"scatterternary\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattercarpet\":[{\"type\":\"scattercarpet\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"carpet\":[{\"aaxis\":{\"endlinecolor\":\"#2a3f5f\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"minorgridcolor\":\"white\",\"startlinecolor\":\"#2a3f5f\"},\"baxis\":{\"endlinecolor\":\"#2a3f5f\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"minorgridcolor\":\"white\",\"startlinecolor\":\"#2a3f5f\"},\"type\":\"carpet\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#EBF0F8\"},\"line\":{\"color\":\"white\"}},\"header\":{\"fill\":{\"color\":\"#C8D4E3\"},\"line\":{\"color\":\"white\"}},\"type\":\"table\"}],\"barpolar\":[{\"marker\":{\"line\":{\"color\":\"#E5ECF6\",\"width\":0.5},\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"barpolar\"}],\"pie\":[{\"automargin\":true,\"type\":\"pie\"}]},\"layout\":{\"autotypenumbers\":\"strict\",\"colorway\":[\"#636efa\",\"#EF553B\",\"#00cc96\",\"#ab63fa\",\"#FFA15A\",\"#19d3f3\",\"#FF6692\",\"#B6E880\",\"#FF97FF\",\"#FECB52\"],\"font\":{\"color\":\"#2a3f5f\"},\"hovermode\":\"closest\",\"hoverlabel\":{\"align\":\"left\"},\"paper_bgcolor\":\"white\",\"plot_bgcolor\":\"#E5ECF6\",\"polar\":{\"bgcolor\":\"#E5ECF6\",\"angularaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"radialaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"}},\"ternary\":{\"bgcolor\":\"#E5ECF6\",\"aaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"baxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"caxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"}},\"coloraxis\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}},\"colorscale\":{\"sequential\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]],\"sequentialminus\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]],\"diverging\":[[0,\"#8e0152\"],[0.1,\"#c51b7d\"],[0.2,\"#de77ae\"],[0.3,\"#f1b6da\"],[0.4,\"#fde0ef\"],[0.5,\"#f7f7f7\"],[0.6,\"#e6f5d0\"],[0.7,\"#b8e186\"],[0.8,\"#7fbc41\"],[0.9,\"#4d9221\"],[1,\"#276419\"]]},\"xaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\",\"title\":{\"standoff\":15},\"zerolinecolor\":\"white\",\"automargin\":true,\"zerolinewidth\":2},\"yaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\",\"title\":{\"standoff\":15},\"zerolinecolor\":\"white\",\"automargin\":true,\"zerolinewidth\":2},\"scene\":{\"xaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2},\"yaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2},\"zaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2}},\"shapedefaults\":{\"line\":{\"color\":\"#2a3f5f\"}},\"annotationdefaults\":{\"arrowcolor\":\"#2a3f5f\",\"arrowhead\":0,\"arrowwidth\":1},\"geo\":{\"bgcolor\":\"white\",\"landcolor\":\"#E5ECF6\",\"subunitcolor\":\"white\",\"showland\":true,\"showlakes\":true,\"lakecolor\":\"white\"},\"title\":{\"x\":0.05},\"mapbox\":{\"style\":\"light\"}}},\"annotations\":[{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\ubc31\\uc740\",\"x\":16.0,\"y\":2.39},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\ubc15\\uc900\",\"x\":15.5,\"y\":4.53},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc720\\ubbfc\",\"x\":11.0,\"y\":4.15},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc720\\uc9c0\",\"x\":8.0,\"y\":3.35},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uac10\\ubbfc\",\"x\":11.9,\"y\":3.62},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uae40\\ub3d9\",\"x\":17.4,\"y\":5.39},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc774\\ud61c\",\"x\":13.1,\"y\":5.43},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc591\\ud64d\",\"x\":9.5,\"y\":4.6},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc548\\uc0c1\",\"x\":10.8,\"y\":2.77},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc7a5\\ud604\",\"x\":17.9,\"y\":4.09},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\ud604\\uc9c0\",\"x\":10.2,\"y\":3.44},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uac15\\ubbf8\",\"x\":12.3,\"y\":4.57},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc784\\ucc44\",\"x\":8.7,\"y\":5.12},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc815\\uc9c0\",\"x\":7.7,\"y\":4.11},{\"font\":{\"color\":\"white\",\"size\":8},\"showarrow\":false,\"text\":\"\\uc774\\ud558\",\"x\":18.8,\"y\":4.47}],\"shapes\":[{\"line\":{\"color\":\"#ddd\",\"dash\":\"dash\"},\"type\":\"line\",\"x0\":11.9,\"x1\":11.9,\"xref\":\"x\",\"y0\":0,\"y1\":1,\"yref\":\"y domain\"},{\"line\":{\"color\":\"#ddd\",\"dash\":\"dash\"},\"type\":\"line\",\"x0\":0,\"x1\":1,\"xref\":\"x domain\",\"y0\":4.15,\"y1\":4.15,\"yref\":\"y\"}],\"xaxis\":{\"title\":{\"text\":\"\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0 (\\uac74)\"},\"zeroline\":false},\"yaxis\":{\"title\":{\"text\":\"\\uc804\\ud658\\uc728 (%)\"},\"zeroline\":false},\"margin\":{\"t\":16,\"b\":24,\"l\":48,\"r\":16},\"font\":{\"family\":\"Pretendard, -apple-system, Malgun Gothic, sans-serif\",\"size\":12},\"title\":{},\"height\":400,\"paper_bgcolor\":\"#fff\",\"plot_bgcolor\":\"#fafbfc\"},                        {\"displayModeBar\": false, \"responsive\": true}                    )                };            </script>        </div>",
+    "buddy_msg": "<div>                            <div id=\"869919a2-f73d-4987-98be-7d747d579de1\" class=\"plotly-graph-div\" style=\"height:420px; width:100%;\"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById(\"869919a2-f73d-4987-98be-7d747d579de1\")) {                    Plotly.newPlot(                        \"869919a2-f73d-4987-98be-7d747d579de1\",                        [{\"hovertemplate\":\"\\u003cb\\u003e\\uc815\\uc9c0\\ud6c8\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 7.7\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 9,224\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 773\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 1,194\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.11%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 7.7\\uac74\"],\"textposition\":\"outside\",\"x\":[7.7],\"y\":[\"\\uc815\\uc9c0\\ud6c8\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc720\\uc9c0\\uc5f0\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 8.0\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 8,635\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 719\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 1,078\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 3.35%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 8.0\\uac74\"],\"textposition\":\"outside\",\"x\":[8.0],\"y\":[\"\\uc720\\uc9c0\\uc5f0\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc784\\ucc44\\ubbfc\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 8.7\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 11,831\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 849\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 1,356\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 5.12%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 8.7\\uac74\"],\"textposition\":\"outside\",\"x\":[8.7],\"y\":[\"\\uc784\\ucc44\\ubbfc\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc591\\ud64d\\uc775\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 9.5\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 9,490\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 745\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 999\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.6%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 9.5\\uac74\"],\"textposition\":\"outside\",\"x\":[9.5],\"y\":[\"\\uc591\\ud64d\\uc775\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\ud604\\uc9c0\\uc6c5\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 10.2\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 6,729\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 702\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 659\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 3.44%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 10.2\\uac74\"],\"textposition\":\"outside\",\"x\":[10.2],\"y\":[\"\\ud604\\uc9c0\\uc6c5\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc548\\uc0c1\\uc740\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 10.8\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 7,860\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 804\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 728\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 2.77%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 10.8\\uac74\"],\"textposition\":\"outside\",\"x\":[10.8],\"y\":[\"\\uc548\\uc0c1\\uc740\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc720\\ubbfc\\uc815\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 11.0\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 5,861\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 682\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 532\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.15%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 11.0\\uac74\"],\"textposition\":\"outside\",\"x\":[11.0],\"y\":[\"\\uc720\\ubbfc\\uc815\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uac10\\ubbfc\\uc131\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 11.9\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 8,115\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 744\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 680\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 3.62%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 11.9\\uac74\"],\"textposition\":\"outside\",\"x\":[11.9],\"y\":[\"\\uac10\\ubbfc\\uc131\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uac15\\ubbf8\\uc560\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 12.3\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 7,730\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 762\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 626\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.57%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 12.3\\uac74\"],\"textposition\":\"outside\",\"x\":[12.3],\"y\":[\"\\uac15\\ubbf8\\uc560\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc774\\ud61c\\uc5f0\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 13.1\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 7,306\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 561\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 558\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 5.43%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 13.1\\uac74\"],\"textposition\":\"outside\",\"x\":[13.1],\"y\":[\"\\uc774\\ud61c\\uc5f0\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\ubc15\\uc900\\uc218\\u003c\\u002fb\\u003e (1\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 15.5\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 10,442\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 762\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 674\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.53%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#636EFA\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 15.5\\uac74\"],\"textposition\":\"outside\",\"x\":[15.5],\"y\":[\"\\ubc15\\uc900\\uc218\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\ubc31\\uc740\\uc601\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 16.0\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 8,551\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 698\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 535\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 2.39%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 16.0\\uac74\"],\"textposition\":\"outside\",\"x\":[16.0],\"y\":[\"\\ubc31\\uc740\\uc601\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uae40\\ub3d9\\uc6b1\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 17.4\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 11,436\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 831\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 657\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 5.39%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 17.4\\uac74\"],\"textposition\":\"outside\",\"x\":[17.4],\"y\":[\"\\uae40\\ub3d9\\uc6b1\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc7a5\\ud604\\uc815\\u003c\\u002fb\\u003e (3\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 17.9\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 12,481\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 785\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 697\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.09%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#00CC96\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 17.9\\uac74\"],\"textposition\":\"outside\",\"x\":[17.9],\"y\":[\"\\uc7a5\\ud604\\uc815\"],\"type\":\"bar\"},{\"hovertemplate\":\"\\u003cb\\u003e\\uc774\\ud558\\ub298\\u003c\\u002fb\\u003e (2\\ud300)\\u003cbr\\u003e\\uc751\\ub300 \\uace0\\uac1d\\ub2f9: 18.8\\uac74\\u003cbr\\u003e\\ucd1d \\uba54\\uc2dc\\uc9c0: 11,645\\uac74\\u003cbr\\u003e\\uc774\\ubc88\\ub2ec \\ubc30\\uc815: 750\\uba85 \\u00b7 \\uc751\\ub300 \\uace0\\uac1d: 619\\uba85\\u003cbr\\u003e\\uc804\\ud658\\uc728: 4.47%\\u003cextra\\u003e\\u003c\\u002fextra\\u003e\",\"marker\":{\"color\":\"#EF553B\"},\"orientation\":\"h\",\"showlegend\":false,\"text\":[\" 18.8\\uac74\"],\"textposition\":\"outside\",\"x\":[18.8],\"y\":[\"\\uc774\\ud558\\ub298\"],\"type\":\"bar\"}],                        {\"template\":{\"data\":{\"histogram2dcontour\":[{\"type\":\"histogram2dcontour\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"choropleth\":[{\"type\":\"choropleth\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"histogram2d\":[{\"type\":\"histogram2d\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"heatmap\":[{\"type\":\"heatmap\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"contourcarpet\":[{\"type\":\"contourcarpet\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"contour\":[{\"type\":\"contour\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"surface\":[{\"type\":\"surface\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"},\"colorscale\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]]}],\"mesh3d\":[{\"type\":\"mesh3d\",\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}],\"scatter\":[{\"fillpattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2},\"type\":\"scatter\"}],\"parcoords\":[{\"type\":\"parcoords\",\"line\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterpolargl\":[{\"type\":\"scatterpolargl\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"bar\":[{\"error_x\":{\"color\":\"#2a3f5f\"},\"error_y\":{\"color\":\"#2a3f5f\"},\"marker\":{\"line\":{\"color\":\"#E5ECF6\",\"width\":0.5},\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"bar\"}],\"scattergeo\":[{\"type\":\"scattergeo\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterpolar\":[{\"type\":\"scatterpolar\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"histogram\":[{\"marker\":{\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"histogram\"}],\"scattergl\":[{\"type\":\"scattergl\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatter3d\":[{\"type\":\"scatter3d\",\"line\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}},\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattermap\":[{\"type\":\"scattermap\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattermapbox\":[{\"type\":\"scattermapbox\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scatterternary\":[{\"type\":\"scatterternary\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"scattercarpet\":[{\"type\":\"scattercarpet\",\"marker\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}}}],\"carpet\":[{\"aaxis\":{\"endlinecolor\":\"#2a3f5f\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"minorgridcolor\":\"white\",\"startlinecolor\":\"#2a3f5f\"},\"baxis\":{\"endlinecolor\":\"#2a3f5f\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"minorgridcolor\":\"white\",\"startlinecolor\":\"#2a3f5f\"},\"type\":\"carpet\"}],\"table\":[{\"cells\":{\"fill\":{\"color\":\"#EBF0F8\"},\"line\":{\"color\":\"white\"}},\"header\":{\"fill\":{\"color\":\"#C8D4E3\"},\"line\":{\"color\":\"white\"}},\"type\":\"table\"}],\"barpolar\":[{\"marker\":{\"line\":{\"color\":\"#E5ECF6\",\"width\":0.5},\"pattern\":{\"fillmode\":\"overlay\",\"size\":10,\"solidity\":0.2}},\"type\":\"barpolar\"}],\"pie\":[{\"automargin\":true,\"type\":\"pie\"}]},\"layout\":{\"autotypenumbers\":\"strict\",\"colorway\":[\"#636efa\",\"#EF553B\",\"#00cc96\",\"#ab63fa\",\"#FFA15A\",\"#19d3f3\",\"#FF6692\",\"#B6E880\",\"#FF97FF\",\"#FECB52\"],\"font\":{\"color\":\"#2a3f5f\"},\"hovermode\":\"closest\",\"hoverlabel\":{\"align\":\"left\"},\"paper_bgcolor\":\"white\",\"plot_bgcolor\":\"#E5ECF6\",\"polar\":{\"bgcolor\":\"#E5ECF6\",\"angularaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"radialaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"}},\"ternary\":{\"bgcolor\":\"#E5ECF6\",\"aaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"baxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"},\"caxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\"}},\"coloraxis\":{\"colorbar\":{\"outlinewidth\":0,\"ticks\":\"\"}},\"colorscale\":{\"sequential\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]],\"sequentialminus\":[[0.0,\"#0d0887\"],[0.1111111111111111,\"#46039f\"],[0.2222222222222222,\"#7201a8\"],[0.3333333333333333,\"#9c179e\"],[0.4444444444444444,\"#bd3786\"],[0.5555555555555556,\"#d8576b\"],[0.6666666666666666,\"#ed7953\"],[0.7777777777777778,\"#fb9f3a\"],[0.8888888888888888,\"#fdca26\"],[1.0,\"#f0f921\"]],\"diverging\":[[0,\"#8e0152\"],[0.1,\"#c51b7d\"],[0.2,\"#de77ae\"],[0.3,\"#f1b6da\"],[0.4,\"#fde0ef\"],[0.5,\"#f7f7f7\"],[0.6,\"#e6f5d0\"],[0.7,\"#b8e186\"],[0.8,\"#7fbc41\"],[0.9,\"#4d9221\"],[1,\"#276419\"]]},\"xaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\",\"title\":{\"standoff\":15},\"zerolinecolor\":\"white\",\"automargin\":true,\"zerolinewidth\":2},\"yaxis\":{\"gridcolor\":\"white\",\"linecolor\":\"white\",\"ticks\":\"\",\"title\":{\"standoff\":15},\"zerolinecolor\":\"white\",\"automargin\":true,\"zerolinewidth\":2},\"scene\":{\"xaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2},\"yaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2},\"zaxis\":{\"backgroundcolor\":\"#E5ECF6\",\"gridcolor\":\"white\",\"linecolor\":\"white\",\"showbackground\":true,\"ticks\":\"\",\"zerolinecolor\":\"white\",\"gridwidth\":2}},\"shapedefaults\":{\"line\":{\"color\":\"#2a3f5f\"}},\"annotationdefaults\":{\"arrowcolor\":\"#2a3f5f\",\"arrowhead\":0,\"arrowwidth\":1},\"geo\":{\"bgcolor\":\"white\",\"landcolor\":\"#E5ECF6\",\"subunitcolor\":\"white\",\"showland\":true,\"showlakes\":true,\"lakecolor\":\"white\"},\"title\":{\"x\":0.05},\"mapbox\":{\"style\":\"light\"}}},\"xaxis\":{\"title\":{\"text\":\"\\uc751\\ub300 \\uace0\\uac1d\\ub2f9 \\uba54\\uc2dc\\uc9c0 (\\uac74)\"}},\"bargap\":0.3,\"margin\":{\"t\":16,\"b\":24,\"l\":48,\"r\":16},\"font\":{\"family\":\"Pretendard, -apple-system, Malgun Gothic, sans-serif\",\"size\":12},\"title\":{},\"height\":420,\"paper_bgcolor\":\"#fff\",\"plot_bgcolor\":\"#fafbfc\"},                        {\"displayModeBar\": false, \"responsive\": true}                    )                };            </script>        </div>",
+    "buddy_funnel_table": "<table class=\"tbl\"><tr><th>#</th><th>버디</th><th>이번달 배정</th><th>응대 고객</th><th>총 메시지</th><th>고객당</th><th>전환율</th></tr><tr><td>1</td><td style=\"text-align:left;font-weight:500\">이혜연</td><td>561명</td><td>558명</td><td>7,306건</td><td>13.1건</td><td>5.43%</td></tr><tr><td>2</td><td style=\"text-align:left;font-weight:500\">김동욱</td><td>831명</td><td>657명</td><td>11,436건</td><td>17.4건</td><td>5.39%</td></tr><tr><td>3</td><td style=\"text-align:left;font-weight:500\">임채민</td><td>849명</td><td>1,356명</td><td>11,831건</td><td>8.7건</td><td>5.12%</td></tr><tr><td>4</td><td style=\"text-align:left;font-weight:500\">양홍익</td><td>745명</td><td>999명</td><td>9,490건</td><td>9.5건</td><td>4.6%</td></tr><tr><td>5</td><td style=\"text-align:left;font-weight:500\">강미애</td><td>762명</td><td>626명</td><td>7,730건</td><td>12.3건</td><td>4.57%</td></tr><tr><td>6</td><td style=\"text-align:left;font-weight:500\">박준수</td><td>762명</td><td>674명</td><td>10,442건</td><td>15.5건</td><td>4.53%</td></tr><tr><td>7</td><td style=\"text-align:left;font-weight:500\">이하늘</td><td>750명</td><td>619명</td><td>11,645건</td><td>18.8건</td><td>4.47%</td></tr><tr><td>8</td><td style=\"text-align:left;font-weight:500\">유민정</td><td>682명</td><td>532명</td><td>5,861건</td><td>11.0건</td><td>4.15%</td></tr><tr><td>9</td><td style=\"text-align:left;font-weight:500\">정지훈</td><td>773명</td><td>1,194명</td><td>9,224건</td><td>7.7건</td><td>4.11%</td></tr><tr><td>10</td><td style=\"text-align:left;font-weight:500\">장현정</td><td>785명</td><td>697명</td><td>12,481건</td><td>17.9건</td><td>4.09%</td></tr><tr><td>11</td><td style=\"text-align:left;font-weight:500\">감민성</td><td>744명</td><td>680명</td><td>8,115건</td><td>11.9건</td><td>3.62%</td></tr><tr><td>12</td><td style=\"text-align:left;font-weight:500\">현지웅</td><td>702명</td><td>659명</td><td>6,729건</td><td>10.2건</td><td>3.44%</td></tr><tr><td>13</td><td style=\"text-align:left;font-weight:500\">유지연</td><td>719명</td><td>1,078명</td><td>8,635건</td><td>8.0건</td><td>3.35%</td></tr><tr><td>14</td><td style=\"text-align:left;font-weight:500\">안상은</td><td>804명</td><td>728명</td><td>7,860건</td><td>10.8건</td><td>2.77%</td></tr><tr><td>15</td><td style=\"text-align:left;font-weight:500\">백은영</td><td>698명</td><td>535명</td><td>8,551건</td><td>16.0건</td><td>2.39%</td></tr></table><div class=\"note\" style=\"margin-top:8px;\">전환율 높은 순 정렬. 총 메시지 = 상담방에서 직접 보낸 메시지 (자동 견적 등 제외). 응대 고객이 배정보다 많을 수 있는 이유: ① 이전달 고객에게도 계속 상담 ② 다른 버디의 상담방에서 대신 메시지를 보낸 경우도 포함됩니다.</div>"
+  },
+  "car_rows": [
+    {
+      "car": "Model Y",
+      "view": 353309,
+      "quote": 30398,
+      "screen": 8359,
+      "v2q": 8.6,
+      "q2s": 27.5
+    },
+    {
+      "car": "EV5",
+      "view": 61629,
+      "quote": 7118,
+      "screen": 1405,
+      "v2q": 11.5,
+      "q2s": 19.7
+    },
+    {
+      "car": "Model 3",
+      "view": 57758,
+      "quote": 7763,
+      "screen": 1504,
+      "v2q": 13.4,
+      "q2s": 19.4
+    },
+    {
+      "car": "쏘렌토 Hybrid",
+      "view": 35387,
+      "quote": 5025,
+      "screen": 1242,
+      "v2q": 14.2,
+      "q2s": 24.7
+    },
+    {
+      "car": "카니발 Hybrid",
+      "view": 30732,
+      "quote": 3943,
+      "screen": 1012,
+      "v2q": 12.8,
+      "q2s": 25.7
+    },
+    {
+      "car": "셀토스",
+      "view": 28844,
+      "quote": 3186,
+      "screen": 1248,
+      "v2q": 11.0,
+      "q2s": 39.2
+    },
+    {
+      "car": "EV3",
+      "view": 28799,
+      "quote": 6011,
+      "screen": 1063,
+      "v2q": 20.9,
+      "q2s": 17.7
+    },
+    {
+      "car": "팰리세이드",
+      "view": 22173,
+      "quote": 1915,
+      "screen": 523,
+      "v2q": 8.6,
+      "q2s": 27.3
+    },
+    {
+      "car": "팰리세이드 Hybrid",
+      "view": 10492,
+      "quote": 2993,
+      "screen": 352,
+      "v2q": 28.5,
+      "q2s": 11.8
+    },
+    {
+      "car": "싼타페 Hybrid",
+      "view": 10372,
+      "quote": 2261,
+      "screen": 474,
+      "v2q": 21.8,
+      "q2s": 21.0
+    },
+    {
+      "car": "스포티지 Hybrid",
+      "view": 10149,
+      "quote": 2180,
+      "screen": 421,
+      "v2q": 21.5,
+      "q2s": 19.3
+    },
+    {
+      "car": "캐스퍼 EV",
+      "view": 10130,
+      "quote": 1231,
+      "screen": 515,
+      "v2q": 12.2,
+      "q2s": 41.8
+    },
+    {
+      "car": "아반떼",
+      "view": 9298,
+      "quote": 1839,
+      "screen": 569,
+      "v2q": 19.8,
+      "q2s": 30.9
+    },
+    {
+      "car": "그랑 콜레오스 Hybrid",
+      "view": 8996,
+      "quote": 1253,
+      "screen": 213,
+      "v2q": 13.9,
+      "q2s": 17.0
+    },
+    {
+      "car": "Cybertruck",
+      "view": 8875,
+      "quote": 301,
+      "screen": 82,
+      "v2q": 3.4,
+      "q2s": 27.2
+    }
+  ],
+  "buddy_activity": [
+    {
+      "name": "정지훈",
+      "msg": 9224,
+      "assign": 773,
+      "contacted": 1194,
+      "per": 7.7,
+      "rate": 4.11,
+      "team": "2팀"
+    },
+    {
+      "name": "유지연",
+      "msg": 8635,
+      "assign": 719,
+      "contacted": 1078,
+      "per": 8.0,
+      "rate": 3.35,
+      "team": "1팀"
+    },
+    {
+      "name": "임채민",
+      "msg": 11831,
+      "assign": 849,
+      "contacted": 1356,
+      "per": 8.7,
+      "rate": 5.12,
+      "team": "2팀"
+    },
+    {
+      "name": "양홍익",
+      "msg": 9490,
+      "assign": 745,
+      "contacted": 999,
+      "per": 9.5,
+      "rate": 4.6,
+      "team": "1팀"
+    },
+    {
+      "name": "현지웅",
+      "msg": 6729,
+      "assign": 702,
+      "contacted": 659,
+      "per": 10.2,
+      "rate": 3.44,
+      "team": "3팀"
+    },
+    {
+      "name": "안상은",
+      "msg": 7860,
+      "assign": 804,
+      "contacted": 728,
+      "per": 10.8,
+      "rate": 2.77,
+      "team": "2팀"
+    },
+    {
+      "name": "유민정",
+      "msg": 5861,
+      "assign": 682,
+      "contacted": 532,
+      "per": 11.0,
+      "rate": 4.15,
+      "team": "1팀"
+    },
+    {
+      "name": "감민성",
+      "msg": 8115,
+      "assign": 744,
+      "contacted": 680,
+      "per": 11.9,
+      "rate": 3.62,
+      "team": "3팀"
+    },
+    {
+      "name": "강미애",
+      "msg": 7730,
+      "assign": 762,
+      "contacted": 626,
+      "per": 12.3,
+      "rate": 4.57,
+      "team": "2팀"
+    },
+    {
+      "name": "이혜연",
+      "msg": 7306,
+      "assign": 561,
+      "contacted": 558,
+      "per": 13.1,
+      "rate": 5.43,
+      "team": "1팀"
+    },
+    {
+      "name": "박준수",
+      "msg": 10442,
+      "assign": 762,
+      "contacted": 674,
+      "per": 15.5,
+      "rate": 4.53,
+      "team": "1팀"
+    },
+    {
+      "name": "백은영",
+      "msg": 8551,
+      "assign": 698,
+      "contacted": 535,
+      "per": 16.0,
+      "rate": 2.39,
+      "team": "3팀"
+    },
+    {
+      "name": "김동욱",
+      "msg": 11436,
+      "assign": 831,
+      "contacted": 657,
+      "per": 17.4,
+      "rate": 5.39,
+      "team": "3팀"
+    },
+    {
+      "name": "장현정",
+      "msg": 12481,
+      "assign": 785,
+      "contacted": 697,
+      "per": 17.9,
+      "rate": 4.09,
+      "team": "3팀"
+    },
+    {
+      "name": "이하늘",
+      "msg": 11645,
+      "assign": 750,
+      "contacted": 619,
+      "per": 18.8,
+      "rate": 4.47,
+      "team": "2팀"
+    }
+  ],
+  "insights": [
+    {
+      "title": "차량별 전환 갭",
+      "body": "결심이 빠른 차량: 캐스퍼 EV(41.8%), 셀토스(39.2%), 아반떼(30.9%)\n→ 이 차량 고객이 오면 바로 빠른 출고 차량을 권유해보세요\n견적만 보고 이탈하는 차량: 팰리세이드 Hybrid(11.8%), 그랑 콜레오스 Hybrid(17.0%), EV3(17.7%)\n→ 이 차량 고객에게는 먼저 특가 상품을 권유해보세요"
+    },
+    {
+      "title": "가입 추세: 감소 49.4%",
+      "body": "첫 주 대비 마지막 주 신규 가입 49.4% 감소\n→ 새 고객이 줄고 있습니다. 지금 상담 중인 고객에게 먼저 연락해보세요"
+    },
+    {
+      "title": "빠릿출고: 전체 PV의 12.1% (일평균 3,801건)",
+      "body": "매일 약 3,801명이 빠릿출고 페이지를 봅니다\n→ 상담 시 즉출 가능한 차량부터 먼저 제안해보세요"
+    }
+  ]
+}
