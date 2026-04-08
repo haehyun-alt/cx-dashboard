@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CX 상담 창구 — 2026-04-09</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+:root {
+  --bg: #f0f2f5; --card: #fff; --text: #1a1a2e; --muted: #6b7280;
+  --accent: #FF5B16; --border: #e5e7eb; --radius: 14px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: Pretendard, -apple-system, "Malgun Gothic", sans-serif;
+  background: var(--bg); color: var(--text); padding: 20px; max-width: 1400px; margin: 0 auto;
+}
+
+/* 헤더 */
+.header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #fff; padding: 24px 28px; border-radius: var(--radius); margin-bottom: 20px;
+}
+.header h1 { font-size: 1.6rem; margin-bottom: 4px; }
+.header .subtitle { color: #94a3b8; font-size: .85rem; }
+
+/* KPI 카드 */
+.kpi-row { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.kpi {
+  background: var(--card); border-radius: var(--radius); padding: 16px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06); min-width: 130px; flex: 1;
+  border-top: 3px solid var(--accent);
+}
+.kpi .label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+.kpi .value { font-size: 1.6rem; font-weight: 800; margin-top: 4px; }
+.kpi .sub { font-size: .72rem; color: var(--muted); margin-top: 2px; }
+.kpi.warn { border-top-color: #F59E0B; }
+.kpi.danger { border-top-color: #EF4444; }
+.kpi.ok { border-top-color: #10B981; }
+
+/* ===== 상담 창구 ===== */
+.section-title {
+  font-size: 1.1rem; font-weight: 700; margin: 28px 0 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title .icon { font-size: 1.3rem; }
+
+.team-section { margin-bottom: 24px; }
+.team-label {
+  font-size: .85rem; font-weight: 700; padding: 6px 14px; margin-bottom: 12px;
+  background: var(--card); border-radius: 8px; display: inline-block;
+}
+.counters {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
+}
+
+.counter {
+  background: var(--card); border-radius: var(--radius); padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05); position: relative; overflow: hidden;
+  transition: transform .15s; border: 2px solid transparent;
+}
+.counter:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+.counter-busy { border-color: #FEE2E2; background: linear-gradient(to bottom, #FFF5F5, #fff); }
+.counter-new { border-color: #FEF3C7; background: linear-gradient(to bottom, #FFFBEB, #fff); }
+.counter-ok { border-color: #D1FAE5; background: linear-gradient(to bottom, #F0FDF4, #fff); }
+
+.counter-header {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+}
+.counter-status { font-size: 1rem; }
+.counter-name { font-weight: 700; font-size: .95rem; flex: 1; }
+.counter-total {
+  font-size: .75rem; background: #f1f5f9; padding: 2px 8px;
+  border-radius: 10px; font-weight: 600; color: var(--muted);
+}
+
+.counter-stats {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px;
+}
+.stat {
+  font-size: .7rem; padding: 2px 8px; border-radius: 6px; font-weight: 600;
+}
+.s-nr { background: #FEE2E2; color: #DC2626; }
+.s-new { background: #FEF3C7; color: #D97706; }
+.s-pot { background: #EDE9FE; color: #7C3AED; }
+.s-resp { background: #DBEAFE; color: #2563EB; }
+
+/* 대기열 (줄 서있는 사람들) */
+.queue {
+  display: flex; align-items: flex-end; gap: 2px; min-height: 28px;
+  padding-top: 8px; border-top: 1px dashed #e5e7eb; flex-wrap: wrap;
+}
+.person { font-size: .85rem; opacity: .8; cursor: default; }
+.p-nr { filter: hue-rotate(0deg) saturate(2); }
+.p-new { filter: hue-rotate(40deg); opacity: .6; }
+.p-pot { filter: hue-rotate(240deg); opacity: .5; }
+.p-resp { font-size: .7rem; background: #DBEAFE; padding: 2px 6px; border-radius: 6px; color: #2563EB; }
+.overflow {
+  font-size: .7rem; color: var(--muted); font-weight: 600; margin-left: 4px;
+}
+
+/* 카드 */
+.card {
+  background: var(--card); border-radius: var(--radius); padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06); margin-bottom: 20px;
+}
+.card h2 {
+  font-size: 1rem; margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px;
+}
+
+/* 미응대 테이블 */
+.nr-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.nr-table th {
+  background: #f1f5f9; padding: 10px 12px; text-align: left;
+  font-weight: 600; border-bottom: 2px solid var(--border);
+}
+.nr-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.nr-table tr.warn td { background: #FFF7ED; }
+.nr-table tr.urgent td { background: #FEF2F2; color: #DC2626; font-weight: 600; }
+.ok-msg { color: #10B981; font-weight: 600; padding: 16px 0; }
+.note { font-size: .76rem; color: var(--muted); margin-top: 10px; }
+
+/* 터치 진행률 */
+.touch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.touch-row {
+  display: flex; align-items: center; gap: 10px; padding: 8px 12px;
+  background: var(--card); border-radius: 8px; border: 1px solid var(--border);
+}
+.touch-row.done { background: #F0FDF4; border-color: #BBF7D0; }
+.touch-name { font-weight: 600; font-size: .85rem; min-width: 56px; }
+.touch-bar-bg {
+  flex: 1; height: 10px; background: #f1f5f9; border-radius: 5px; overflow: hidden;
+}
+.touch-bar { height: 100%; border-radius: 5px; transition: width .3s; }
+.touch-cnt { font-size: .78rem; font-weight: 700; min-width: 36px; text-align: right; }
+
+/* 창구 카드 내 미니 터치 바 */
+.touch-mini {
+  display: flex; align-items: center; gap: 6px; margin-top: 6px;
+  padding-top: 6px; border-top: 1px dashed #e5e7eb;
+}
+.touch-bar-bg-mini {
+  flex: 1; height: 6px; background: #f1f5f9; border-radius: 3px; overflow: hidden;
+}
+
+/* 탭 */
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; }
+.tab {
+  padding: 8px 18px; border-radius: 8px; cursor: pointer;
+  font-size: .85rem; font-weight: 600; background: var(--card);
+  border: 1px solid var(--border); transition: all .15s;
+}
+.tab:hover { background: #f1f5f9; }
+.tab.on { background: var(--accent); color: #fff; border-color: var(--accent); }
+.panel { display: none; }
+.panel.on { display: block; }
+
+/* 시뮬레이션 */
+#sim-svg { width: 100%; }
+.sim-label { font-family: inherit; font-weight: 700; fill: #1a1a2e; pointer-events: none; }
+.sim-count { font-family: inherit; font-weight: 400; fill: #6b7280; pointer-events: none; }
+.sim-team-bg { fill: #f8f9fa; stroke: #e5e7eb; stroke-width: 1; rx: 12; }
+
+/* ===== 애니메이션 ===== */
+
+/* 페이드 + 슬라이드업 */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* KPI 숫자 팝 */
+@keyframes popIn {
+  0%   { opacity: 0; transform: scale(0.5); }
+  70%  { transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* 미응대 창구 펄스 */
+@keyframes urgentPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,91,22,.25); }
+  50%      { box-shadow: 0 0 0 8px rgba(255,91,22,0); }
+}
+
+/* 대기열 사람 등장 */
+@keyframes personPop {
+  0%   { opacity:0; transform: scale(0) translateY(8px); }
+  60%  { transform: scale(1.2) translateY(-2px); }
+  100% { opacity:1; transform: scale(1) translateY(0); }
+}
+
+/* 프로그레스 바 채우기 */
+@keyframes barGrow {
+  from { width: 0 !important; }
+}
+
+/* 적용 */
+.kpi {
+  opacity: 0;
+  animation: fadeSlideUp .5s ease forwards;
+}
+.kpi:nth-child(1) { animation-delay: .05s; }
+.kpi:nth-child(2) { animation-delay: .1s; }
+.kpi:nth-child(3) { animation-delay: .15s; }
+.kpi:nth-child(4) { animation-delay: .2s; }
+.kpi:nth-child(5) { animation-delay: .25s; }
+.kpi:nth-child(6) { animation-delay: .3s; }
+
+.kpi .value {
+  animation: popIn .5s ease forwards;
+  animation-delay: .4s;
+  opacity: 0;
+}
+
+.counter {
+  opacity: 0;
+  animation: fadeSlideUp .4s ease forwards;
+}
+.counters .counter:nth-child(1) { animation-delay: .1s; }
+.counters .counter:nth-child(2) { animation-delay: .18s; }
+.counters .counter:nth-child(3) { animation-delay: .26s; }
+.counters .counter:nth-child(4) { animation-delay: .34s; }
+.counters .counter:nth-child(5) { animation-delay: .42s; }
+
+.counter-busy {
+  animation: fadeSlideUp .4s ease forwards, urgentPulse 2s ease-in-out 1s infinite;
+}
+
+.person {
+  opacity: 0;
+  animation: personPop .3s ease forwards;
+}
+.queue .person:nth-child(1) { animation-delay: .3s; }
+.queue .person:nth-child(2) { animation-delay: .38s; }
+.queue .person:nth-child(3) { animation-delay: .46s; }
+.queue .person:nth-child(4) { animation-delay: .54s; }
+.queue .person:nth-child(5) { animation-delay: .62s; }
+.queue .person:nth-child(6) { animation-delay: .7s; }
+.queue .person:nth-child(7) { animation-delay: .78s; }
+.queue .person:nth-child(8) { animation-delay: .86s; }
+.queue .overflow { animation: fadeSlideUp .3s ease forwards; animation-delay: .9s; opacity:0; }
+
+.touch-bar, .touch-bar-bg-mini div {
+  animation: barGrow .8s ease forwards;
+  animation-delay: .3s;
+}
+
+.touch-row {
+  opacity: 0;
+  animation: fadeSlideUp .35s ease forwards;
+}
+.touch-grid .touch-row:nth-child(1)  { animation-delay: .05s; }
+.touch-grid .touch-row:nth-child(2)  { animation-delay: .08s; }
+.touch-grid .touch-row:nth-child(3)  { animation-delay: .11s; }
+.touch-grid .touch-row:nth-child(4)  { animation-delay: .14s; }
+.touch-grid .touch-row:nth-child(5)  { animation-delay: .17s; }
+.touch-grid .touch-row:nth-child(6)  { animation-delay: .20s; }
+.touch-grid .touch-row:nth-child(7)  { animation-delay: .23s; }
+.touch-grid .touch-row:nth-child(8)  { animation-delay: .26s; }
+.touch-grid .touch-row:nth-child(9)  { animation-delay: .29s; }
+.touch-grid .touch-row:nth-child(10) { animation-delay: .32s; }
+.touch-grid .touch-row:nth-child(11) { animation-delay: .35s; }
+.touch-grid .touch-row:nth-child(12) { animation-delay: .38s; }
+.touch-grid .touch-row:nth-child(13) { animation-delay: .41s; }
+.touch-grid .touch-row:nth-child(14) { animation-delay: .44s; }
+.touch-grid .touch-row:nth-child(15) { animation-delay: .47s; }
+
+.card {
+  opacity: 0;
+  animation: fadeSlideUp .5s ease forwards;
+  animation-delay: .15s;
+}
+
+.team-section {
+  opacity: 0;
+  animation: fadeSlideUp .4s ease forwards;
+}
+.team-section:nth-child(1) { animation-delay: .05s; }
+.team-section:nth-child(2) { animation-delay: .2s; }
+.team-section:nth-child(3) { animation-delay: .35s; }
+
+@media (max-width: 768px) {
+  .counters { grid-template-columns: 1fr; }
+  .kpi-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- 헤더 -->
+<div class="header" style="display:flex;justify-content:space-between;align-items:center;">
+  <div>
+    <h1>CX 상담 창구 </h1>
+    <div class="subtitle">2026-04-09 기준 | 2026-04-09 08:37 업데이트</div>
+  </div>
+  <button onclick="doRefresh(this)" style="
+    background:#FF5B16;color:#fff;border:none;padding:10px 22px;border-radius:10px;
+    font-size:.9rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;
+    transition:all .15s;
+  " onmouseover="this.style.background='#e04d0e'" onmouseout="this.style.background='#FF5B16'">
+    <span id="refresh-icon" style="display:inline-block;transition:transform .3s;">&#x21bb;</span>
+    새로고침
+  </button>
+</div>
+
+<!-- KPI -->
+<div class="kpi-row">
+  <div class="kpi danger">
+    <div class="label">미응대</div>
+    <div class="value">332</div>
+    <div class="sub">15명의 버디</div>
+  </div>
+  <div class="kpi warn">
+    <div class="label">신규</div>
+    <div class="value">140</div>
+  </div>
+  <div class="kpi">
+    <div class="label">잠재고객</div>
+    <div class="value">5443</div>
+  </div>
+  <div class="kpi ok">
+    <div class="label">파이프라인</div>
+    <div class="value">141</div>
+    <div class="sub">최근 14일 심사건</div>
+  </div>
+  <div class="kpi danger">
+    <div class="label">50분+ 미응대</div>
+    <div class="value">0</div>
+    <div class="sub">0명의 버디</div>
+  </div>
+  <div class="kpi warn">
+    <div class="label">잠재 터치</div>
+    <div class="value">0</div>
+    <div class="sub">0/15명 목표 달성</div>
+  </div>
+</div>
+
+<!-- 탭 -->
+<div class="tabs">
+  <div class="tab on" onclick="switchTab(event,0)">상담 창구</div>
+  <div class="tab" onclick="switchTab(event,1)">잠재 터치</div>
+  <div class="tab" onclick="switchTab(event,2)">상세 차트</div>
+  <div class="tab" onclick="switchTab(event,3)">미응대 상세</div>
+</div>
+
+<!-- Tab 0: 상담 창구 시뮬레이션 -->
+<div class="panel on" id="p0">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <div class="section-title" style="margin:0;"><span class="icon">🏢</span> 버디별 상담 창구 현황</div>
+    <div style="font-size:.78rem;color:var(--muted);">
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#FF5B16;margin-right:3px;vertical-align:middle;"></span>미응대 &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#D97706;margin-right:3px;vertical-align:middle;"></span>신규 &nbsp;
+      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7C3AED;margin-right:3px;vertical-align:middle;"></span>잠재고객
+    </div>
+  </div>
+  <div id="sim-container" style="background:#fff;border-radius:var(--radius);box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden;position:relative;">
+    <svg id="sim-svg"></svg>
+  </div>
+  <div style="margin-top:16px;">
+    <div class="team-section"><div class="team-label" style="border-left:4px solid #FFA37C">1팀</div><div class="counters">
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">이혜연</span>
+                <span class="counter-total">549명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 34</span>
+                <span class="stat s-new">신규 10</span>
+                <span class="stat s-pot">잠재 505</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+531</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">양홍익</span>
+                <span class="counter-total">325명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 12</span>
+                <span class="stat s-new">신규 3</span>
+                <span class="stat s-pot">잠재 310</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+310</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">유지연</span>
+                <span class="counter-total">231명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 18</span>
+                <span class="stat s-new">신규 12</span>
+                <span class="stat s-pot">잠재 201</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+213</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">박준수</span>
+                <span class="counter-total">424명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 21</span>
+                <span class="stat s-new">신규 11</span>
+                <span class="stat s-pot">잠재 392</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+406</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">유민정</span>
+                <span class="counter-total">403명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 14</span>
+                <span class="stat s-new">신규 3</span>
+                <span class="stat s-pot">잠재 386</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+388</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div></div></div>
+<div class="team-section"><div class="team-label" style="border-left:4px solid #301D5A">2팀</div><div class="counters">
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">임채민</span>
+                <span class="counter-total">62명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 26</span>
+                <span class="stat s-new">신규 8</span>
+                <span class="stat s-pot">잠재 28</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+44</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">안상은</span>
+                <span class="counter-total">629명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 29</span>
+                <span class="stat s-new">신규 13</span>
+                <span class="stat s-pot">잠재 587</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+611</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">정지훈</span>
+                <span class="counter-total">36명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 26</span>
+                <span class="stat s-new">신규 5</span>
+                <span class="stat s-pot">잠재 5</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+19</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">강미애</span>
+                <span class="counter-total">445명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 17</span>
+                <span class="stat s-new">신규 11</span>
+                <span class="stat s-pot">잠재 417</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+427</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">이하늘</span>
+                <span class="counter-total">464명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 28</span>
+                <span class="stat s-new">신규 9</span>
+                <span class="stat s-pot">잠재 427</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+446</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div></div></div>
+<div class="team-section"><div class="team-label" style="border-left:4px solid #6D7280">3팀</div><div class="counters">
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">감민성</span>
+                <span class="counter-total">574명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 41</span>
+                <span class="stat s-new">신규 14</span>
+                <span class="stat s-pot">잠재 519</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+556</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">장현정</span>
+                <span class="counter-total">490명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 18</span>
+                <span class="stat s-new">신규 8</span>
+                <span class="stat s-pot">잠재 464</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+472</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">현지웅</span>
+                <span class="counter-total">416명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 21</span>
+                <span class="stat s-new">신규 13</span>
+                <span class="stat s-pot">잠재 382</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+398</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">김동욱</span>
+                <span class="counter-total">473명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 15</span>
+                <span class="stat s-new">신규 9</span>
+                <span class="stat s-pot">잠재 449</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+455</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div>
+            <div class="counter counter-busy">
+              <div class="counter-header">
+                <span class="counter-status">🔴</span>
+                <span class="counter-name">백은영</span>
+                <span class="counter-total">394명</span>
+              </div>
+              <div class="counter-stats">
+                <span class="stat s-nr">미응대 12</span>
+                <span class="stat s-new">신규 11</span>
+                <span class="stat s-pot">잠재 371</span>
+              </div>
+              <div class="queue"><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-nr" title="미응대">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-new" title="신규">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="person p-pot" title="잠재고객">🧍</span><span class="overflow">+376</span></div>
+              <div class="touch-mini" title="잠재고객 터치 0/10">
+                <div class="touch-bar-bg-mini">
+                  <div style="width:0.0%;background:#EF4444;height:100%;border-radius:3px;"></div>
+                </div>
+                <span style="font-size:.68rem;color:var(--muted);">터치 0/10</span>
+              </div>
+            </div></div></div>
+  </div>
+</div>
+
+<!-- Tab 1: 잠재 터치 -->
+<div class="panel" id="p1">
+  <div class="card">
+    <h2><span>🎯</span> 잠재고객 터치 현황 — 오늘 목표 10건</h2>
+    <div class="touch-grid">
+
+            <div class="touch-row">
+              <span class="touch-name">이혜연</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">양홍익</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">유지연</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">박준수</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">유민정</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">임채민</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">안상은</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">정지훈</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">강미애</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">이하늘</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">감민성</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">장현정</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">현지웅</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">김동욱</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+
+            <div class="touch-row">
+              <span class="touch-name">백은영</span>
+              <div class="touch-bar-bg">
+                <div class="touch-bar" style="width:0.0%;background:#EF4444;"></div>
+              </div>
+              <span class="touch-cnt">0/10</span>
+            </div>
+</div>
+    <div class="note">잠재고객 상태 채팅방에 버디가 오늘 메시지를 발송한 건수. 10건 달성 시 초록색.</div>
+  </div>
+</div>
+
+<!-- Tab 2: 상세 차트 -->
+<div class="panel" id="p2">
+  <div class="card">
+    <h2><span>📊</span> 채팅방 상태 분포</h2>
+    <div>                            <div id="1542829a-9be5-4080-b1ae-1dba7a112ea8" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("1542829a-9be5-4080-b1ae-1dba7a112ea8")) {                    Plotly.newPlot(                        "1542829a-9be5-4080-b1ae-1dba7a112ea8",                        [{"marker":{"color":"#FF5B16"},"name":"\ubbf8\uc751\ub300","orientation":"h","text":["12","15","21","18","41","28","17","26","29","26","14","21","18","12","34"],"textfont":{"color":"white","size":11},"textposition":"inside","x":[12,15,21,18,41,28,17,26,29,26,14,21,18,12,34],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"},{"marker":{"color":"#6D7280"},"name":"\uc2e0\uaddc","orientation":"h","text":["11","9","13","8","14","9","11","5","13","8","3","11","12","3","10"],"textfont":{"color":"white","size":11},"textposition":"inside","x":[11,9,13,8,14,9,11,5,13,8,3,11,12,3,10],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"},{"marker":{"color":"#A78BFA"},"name":"\uc7a0\uc7ac\uace0\uac1d","orientation":"h","text":["371","449","382","464","519","427","417","5","587","28","386","392","201","310","505"],"textfont":{"color":"white","size":11},"textposition":"inside","x":[371,449,382,464,519,427,417,5,587,28,386,392,201,310,505],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"barmode":"stack","xaxis":{"title":{"text":"\ucc44\ud305\ubc29 \uc218"}},"margin":{"t":16,"b":24,"l":120,"r":16},"font":{"family":"Pretendard, -apple-system, Malgun Gothic, sans-serif","size":12},"title":{},"height":500,"paper_bgcolor":"#fff","plot_bgcolor":"#fafbfc"},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+    <div class="note">CLOSED 제외 활성 채팅방 기준. 미응대(주황)가 많으면 즉시 응대 필요.</div>
+  </div>
+  <div class="card">
+    <h2><span>🔬</span> 심사 파이프라인</h2>
+    <div>                            <div id="ca051af9-abe4-4131-9024-5e0af4f43acf" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("ca051af9-abe4-4131-9024-5e0af4f43acf")) {                    Plotly.newPlot(                        "ca051af9-abe4-4131-9024-5e0af4f43acf",                        [{"marker":{"color":"#8B5CF6"},"name":"\uc870\uac74\ubd80\ud655\uc815","orientation":"h","text":["","","","","","1","","","","","","","","",""],"textfont":{"color":"white","size":11},"textposition":"inside","x":[0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"},{"marker":{"color":"#A78BFA"},"name":"\uc870\uac74\ubd80\uc2b9\uc778","orientation":"h","text":["","","","5","2","3","1","2","7","5","","","3","1","2"],"textfont":{"color":"white","size":11},"textposition":"inside","x":[0,0,0,5,2,3,1,2,7,5,0,0,3,1,2],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"},{"marker":{"color":"#3B82F6"},"name":"\uc2b9\uc778","orientation":"h","text":["","5","","12","3","7","6","13","10","1","1","","6","1","3"],"textfont":{"color":"white","size":11},"textposition":"inside","x":[0,5,0,12,3,7,6,13,10,1,1,0,6,1,3],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"},{"marker":{"color":"#10B981"},"name":"\uacc4\uc57d\uc694\uccad","orientation":"h","text":["1","1","2","2","2","2","","1","1","","1","1","2","",""],"textfont":{"color":"white","size":11},"textposition":"inside","x":[1,1,2,2,2,2,0,1,1,0,1,1,2,0,0],"y":["\ubc31\uc740\uc601","\uae40\ub3d9\uc6b1","\ud604\uc9c0\uc6c5","\uc7a5\ud604\uc815","\uac10\ubbfc\uc131","\uc774\ud558\ub298","\uac15\ubbf8\uc560","\uc815\uc9c0\ud6c8","\uc548\uc0c1\uc740","\uc784\ucc44\ubbfc","\uc720\ubbfc\uc815","\ubc15\uc900\uc218","\uc720\uc9c0\uc5f0","\uc591\ud64d\uc775","\uc774\ud61c\uc5f0"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"barmode":"stack","xaxis":{"title":{"text":"\uac74\uc218"}},"margin":{"t":16,"b":24,"l":120,"r":16},"font":{"family":"Pretendard, -apple-system, Malgun Gothic, sans-serif","size":12},"title":{},"height":500,"paper_bgcolor":"#fff","plot_bgcolor":"#fafbfc"},                        {"displayModeBar": false, "responsive": true}                    )                };            </script>        </div>
+    <div class="note">최근 14일 심사건 중 유효 계약 없는 고객. 승인 후 계약 미진행이 많으면 클로징 독려 필요.</div>
+  </div>
+</div>
+
+<!-- Tab 3: 미응대 상세 -->
+<div class="panel" id="p3">
+  <div class="card">
+    <h2><span>⏰</span> 50분+ 미응대 상세</h2>
+    <p class="ok-msg">현재 50분 이상 미응대 건이 없습니다.</p>
+    <div class="note">고객의 마지막 발화 이후 버디가 50분 이상 응답하지 않은 건. 2시간 이상은 빨간색 표시.</div>
+  </div>
+</div>
+
+<script>
+function switchTab(e, idx) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  e.target.classList.add('on');
+  document.getElementById('p'+idx).classList.add('on');
+}
+// ===== D3 Force 시뮬레이션 =====
+(function() {
+  var rawData = [{"buddy": "박준수", "team": "1팀", "status": "NOT_RESPONDED", "cnt": 21}, {"buddy": "박준수", "team": "1팀", "status": "POTENTIAL_CUSTOMER", "cnt": 392}, {"buddy": "박준수", "team": "1팀", "status": "NEW", "cnt": 11}, {"buddy": "양홍익", "team": "1팀", "status": "POTENTIAL_CUSTOMER", "cnt": 310}, {"buddy": "양홍익", "team": "1팀", "status": "NEW", "cnt": 3}, {"buddy": "양홍익", "team": "1팀", "status": "NOT_RESPONDED", "cnt": 12}, {"buddy": "유민정", "team": "1팀", "status": "NEW", "cnt": 3}, {"buddy": "유민정", "team": "1팀", "status": "POTENTIAL_CUSTOMER", "cnt": 386}, {"buddy": "유민정", "team": "1팀", "status": "NOT_RESPONDED", "cnt": 14}, {"buddy": "유지연", "team": "1팀", "status": "NEW", "cnt": 12}, {"buddy": "유지연", "team": "1팀", "status": "POTENTIAL_CUSTOMER", "cnt": 201}, {"buddy": "유지연", "team": "1팀", "status": "NOT_RESPONDED", "cnt": 18}, {"buddy": "이혜연", "team": "1팀", "status": "NEW", "cnt": 10}, {"buddy": "이혜연", "team": "1팀", "status": "NOT_RESPONDED", "cnt": 34}, {"buddy": "이혜연", "team": "1팀", "status": "POTENTIAL_CUSTOMER", "cnt": 505}, {"buddy": "강미애", "team": "2팀", "status": "NEW", "cnt": 11}, {"buddy": "강미애", "team": "2팀", "status": "POTENTIAL_CUSTOMER", "cnt": 417}, {"buddy": "강미애", "team": "2팀", "status": "NOT_RESPONDED", "cnt": 17}, {"buddy": "안상은", "team": "2팀", "status": "NOT_RESPONDED", "cnt": 29}, {"buddy": "안상은", "team": "2팀", "status": "POTENTIAL_CUSTOMER", "cnt": 587}, {"buddy": "안상은", "team": "2팀", "status": "NEW", "cnt": 13}, {"buddy": "이하늘", "team": "2팀", "status": "NOT_RESPONDED", "cnt": 28}, {"buddy": "이하늘", "team": "2팀", "status": "POTENTIAL_CUSTOMER", "cnt": 427}, {"buddy": "이하늘", "team": "2팀", "status": "NEW", "cnt": 9}, {"buddy": "임채민", "team": "2팀", "status": "NOT_RESPONDED", "cnt": 26}, {"buddy": "임채민", "team": "2팀", "status": "POTENTIAL_CUSTOMER", "cnt": 28}, {"buddy": "임채민", "team": "2팀", "status": "NEW", "cnt": 8}, {"buddy": "정지훈", "team": "2팀", "status": "POTENTIAL_CUSTOMER", "cnt": 5}, {"buddy": "정지훈", "team": "2팀", "status": "NEW", "cnt": 5}, {"buddy": "정지훈", "team": "2팀", "status": "NOT_RESPONDED", "cnt": 26}, {"buddy": "감민성", "team": "3팀", "status": "POTENTIAL_CUSTOMER", "cnt": 519}, {"buddy": "감민성", "team": "3팀", "status": "NEW", "cnt": 14}, {"buddy": "감민성", "team": "3팀", "status": "NOT_RESPONDED", "cnt": 41}, {"buddy": "김동욱", "team": "3팀", "status": "POTENTIAL_CUSTOMER", "cnt": 449}, {"buddy": "김동욱", "team": "3팀", "status": "NOT_RESPONDED", "cnt": 15}, {"buddy": "김동욱", "team": "3팀", "status": "NEW", "cnt": 9}, {"buddy": "백은영", "team": "3팀", "status": "POTENTIAL_CUSTOMER", "cnt": 371}, {"buddy": "백은영", "team": "3팀", "status": "NEW", "cnt": 11}, {"buddy": "백은영", "team": "3팀", "status": "NOT_RESPONDED", "cnt": 12}, {"buddy": "장현정", "team": "3팀", "status": "POTENTIAL_CUSTOMER", "cnt": 464}, {"buddy": "장현정", "team": "3팀", "status": "NEW", "cnt": 8}, {"buddy": "장현정", "team": "3팀", "status": "NOT_RESPONDED", "cnt": 18}, {"buddy": "현지웅", "team": "3팀", "status": "NOT_RESPONDED", "cnt": 21}, {"buddy": "현지웅", "team": "3팀", "status": "POTENTIAL_CUSTOMER", "cnt": 382}, {"buddy": "현지웅", "team": "3팀", "status": "NEW", "cnt": 13}];
+  var statusColor = {
+    'NOT_RESPONDED': '#FF5B16',
+    'NEW': '#D97706',
+    'POTENTIAL_CUSTOMER': '#7C3AED'
+  };
+  var statusLabel = {
+    'NOT_RESPONDED': '미응대',
+    'NEW': '신규',
+    'POTENTIAL_CUSTOMER': '잠재고객'
+  };
+  var teamOrder = ['1팀','2팀','3팀'];
+  var buddyOrder = {
+    '1팀': ['이혜연','양홍익','유지연','박준수','유민정'],
+    '2팀': ['임채민','안상은','정지훈','강미애','이하늘'],
+    '3팀': ['감민성','장현정','현지웅','김동욱','백은영']
+  };
+
+  // 레이아웃: 3행(팀) × 5열(버디)
+  var W = Math.min(document.getElementById('sim-container').offsetWidth, 1400);
+  var colW = W / 5;
+  var rowH = 180;
+  var H = rowH * 3 + 60;
+  var padTop = 30;
+
+  // 버디별 중심 좌표 계산
+  var centers = {};
+  teamOrder.forEach(function(team, ti) {
+    buddyOrder[team].forEach(function(buddy, bi) {
+      centers[buddy] = {
+        x: colW * bi + colW / 2,
+        y: padTop + rowH * ti + rowH / 2
+      };
+    });
+  });
+
+  // 집계 데이터 → 개별 dot으로 변환 (1 dot = N명, 최대 ~600 dot)
+  var totalPeople = 0;
+  rawData.forEach(function(d) { totalPeople += d.cnt; });
+  var scale = Math.max(1, Math.ceil(totalPeople / 600));
+
+  var dots = [];
+  rawData.forEach(function(d) {
+    var n = Math.max(1, Math.round(d.cnt / scale));
+    for (var i = 0; i < n; i++) {
+      dots.push({
+        buddy: d.buddy,
+        team: d.team,
+        status: d.status,
+        realCnt: d.cnt,
+        cx: centers[d.buddy] ? centers[d.buddy].x : W/2,
+        cy: centers[d.buddy] ? centers[d.buddy].y : H/2,
+        x: W / 2 + (Math.random() - 0.5) * W * 0.8,
+        y: H / 2 + (Math.random() - 0.5) * H * 0.8
+      });
+    }
+  });
+
+  var r = scale > 5 ? 3 : (scale > 2 ? 3.5 : 4);
+
+  var svg = d3.select('#sim-svg')
+    .attr('width', W)
+    .attr('height', H)
+    .attr('viewBox', '0 0 ' + W + ' ' + H);
+
+  // 팀 배경
+  teamOrder.forEach(function(team, ti) {
+    svg.append('rect')
+      .attr('class', 'sim-team-bg')
+      .attr('x', 8)
+      .attr('y', padTop + rowH * ti + 2)
+      .attr('width', W - 16)
+      .attr('height', rowH - 4);
+  });
+
+  // 버디 라벨
+  Object.keys(centers).forEach(function(buddy) {
+    var c = centers[buddy];
+    var buddyDots = rawData.filter(function(d){ return d.buddy === buddy; });
+    var total = 0;
+    buddyDots.forEach(function(d){ total += d.cnt; });
+
+    svg.append('text')
+      .attr('class', 'sim-label')
+      .attr('x', c.x)
+      .attr('y', c.y - rowH/2 + 20)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '13px')
+      .text(buddy);
+
+    svg.append('text')
+      .attr('class', 'sim-count')
+      .attr('x', c.x)
+      .attr('y', c.y - rowH/2 + 35)
+      .attr('text-anchor', 'middle')
+      .attr('font-size', '11px')
+      .text(total + '명' + (scale > 1 ? ' (●=' + scale + '명)' : ''));
+  });
+
+  // 팀 라벨
+  teamOrder.forEach(function(team, ti) {
+    svg.append('text')
+      .attr('x', 20)
+      .attr('y', padTop + rowH * ti + rowH/2)
+      .attr('text-anchor', 'start')
+      .attr('font-size', '11px')
+      .attr('fill', '#94a3b8')
+      .attr('font-weight', '700')
+      .attr('dominant-baseline', 'middle')
+      .text(team);
+  });
+
+  // dot 그리기
+  var circles = svg.selectAll('circle.dot')
+    .data(dots)
+    .enter()
+    .append('circle')
+    .attr('class', 'dot')
+    .attr('r', 0)
+    .attr('cx', function(d) { return d.x; })
+    .attr('cy', function(d) { return d.y; })
+    .attr('fill', function(d) { return statusColor[d.status] || '#999'; })
+    .attr('opacity', 0.85)
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 0.5);
+
+  // dot 등장 애니메이션
+  circles.transition()
+    .delay(function(d, i) { return 200 + i * 3; })
+    .duration(400)
+    .attr('r', r);
+
+  // Force 시뮬레이션
+  var simulation = d3.forceSimulation(dots)
+    .force('x', d3.forceX(function(d) { return d.cx; }).strength(0.08))
+    .force('y', d3.forceY(function(d) { return d.cy + 10; }).strength(0.08))
+    .force('collide', d3.forceCollide(r + 1).iterations(2))
+    .alphaDecay(0.015)
+    .on('tick', function() {
+      circles
+        .attr('cx', function(d) { return d.x; })
+        .attr('cy', function(d) { return d.y; });
+    });
+
+  // 툴팁
+  var tooltip = d3.select('#sim-container')
+    .append('div')
+    .style('position', 'absolute')
+    .style('background', 'rgba(26,26,46,.9)')
+    .style('color', '#fff')
+    .style('padding', '6px 12px')
+    .style('border-radius', '8px')
+    .style('font-size', '.78rem')
+    .style('pointer-events', 'none')
+    .style('opacity', 0)
+    .style('transition', 'opacity .15s')
+    .style('z-index', 10);
+
+  circles
+    .on('mouseover', function(event, d) {
+      tooltip
+        .html(d.buddy + ' · ' + (statusLabel[d.status]||d.status) + '<br>' +
+              (scale > 1 ? '●=' + scale + '명 (총 ' + d.realCnt + '명)' : d.realCnt + '명'))
+        .style('left', (event.offsetX + 12) + 'px')
+        .style('top', (event.offsetY - 10) + 'px')
+        .style('opacity', 1);
+      d3.select(this).attr('r', r * 2).attr('opacity', 1);
+    })
+    .on('mouseout', function() {
+      tooltip.style('opacity', 0);
+      d3.select(this).attr('r', r).attr('opacity', 0.85);
+    });
+})();
+
+// KPI 숫자 카운트업
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.kpi .value').forEach(function(el) {
+    var target = parseInt(el.textContent) || 0;
+    if (target === 0) return;
+    var duration = 800, start = 0, startTime = null;
+    el.textContent = '0';
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var ease = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      el.textContent = Math.round(ease * target);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    setTimeout(function() { requestAnimationFrame(step); }, 500);
+  });
+});
+
+function doRefresh(btn) {
+  var icon = document.getElementById('refresh-icon');
+  icon.style.transform = 'rotate(360deg)';
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  fetch('/refresh').then(r => r.json()).then(d => {
+    if (d.ok) location.reload();
+    else { alert('새로고침 실패: ' + (d.error||'')); btn.disabled=false; btn.style.opacity='1'; icon.style.transform=''; }
+  }).catch(() => {
+    // 서버 모드가 아닌 경우 (정적 파일) → 안내
+    alert('서버 모드에서만 새로고침이 가능합니다.\npython build_bottleneck.py --serve');
+    btn.disabled=false; btn.style.opacity='1'; icon.style.transform='';
+  });
+}
+</script>
+</body>
+</html>
